@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.tkglaser.askthedice.R.attr"/>
+<fullyQualifiedTypeName name="com.tkglaser.askthedice.R.id"/>
+<fullyQualifiedTypeName name="android.hardware.Camera"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.app.AlertDialog"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.app.SherlockActivity"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.Menu"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.MenuInflater"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.MenuItem"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.app.ActionBar"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="com.tkglaser.askthedice.KinderWuerfel"/>
+<fullyQualifiedTypeName name="com.tkglaser.askthedice.R.string"/>
+</qualifiedTypeNameHistroy>

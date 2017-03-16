@@ -1,0 +1,14 @@
+INDEX VERSION 1.126+C:\Projects\AskTheDice\.metadata\.plugins\org.eclipse.jdt.core
+363904453.index
+1531412002.index
+2531036251.index
+653827826.index
+465491737.index
+3862323361.index
+1701852169.index
+1132089061.index
+3954157920.index
+4038163858.index
+2078433874.index
+3371209228.index
+274210038.index

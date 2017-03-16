@@ -1,0 +1,169 @@
+package com.tkglaser.askthedice;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.GridView;
+import android.widget.ImageView;
+
+public class ImageManager extends SherlockActivity {
+
+    private static class EfficientAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+        private String[] mFileList;
+        private Context mContext;
+        private List<String> mSelectedFilenames = new ArrayList<String>();
+
+        public EfficientAdapter(Context context) {
+            // Cache the LayoutInflate to avoid asking for a new one each time.
+            mInflater = LayoutInflater.from(context);
+            mContext = context;
+            
+            mFileList = context.fileList();
+        }
+        
+        public void deleteSelected()
+        {
+        	for (String fname : mSelectedFilenames) {
+        		mContext.deleteFile(fname);
+			}
+        }
+
+        @Override
+		public void notifyDataSetChanged() {
+            mFileList = mContext.fileList();
+			super.notifyDataSetChanged();
+		}
+
+		public int getCount() {
+            return mFileList.length;
+        }
+
+        public Object getItem(int position) {
+            return position;
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.image_manager_item, null);
+
+                holder = new ViewHolder();
+                holder.checkbox = (CheckBox) convertView.findViewById(R.id.im_item_checkbox);
+                holder.icon = (ImageView) convertView.findViewById(R.id.im_item_img);
+                holder.position = position;
+                convertView.setTag(holder);
+                
+                holder.checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {					
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+						ViewHolder holder = (ViewHolder)((View)buttonView.getParent()).getTag();
+						if (isChecked && !mSelectedFilenames.contains(mFileList[holder.position]))
+						{
+							mSelectedFilenames.add(mFileList[holder.position]);
+						}
+						if (!isChecked && mSelectedFilenames.contains(mFileList[holder.position]))
+						{
+							mSelectedFilenames.remove(mFileList[holder.position]);
+						}								
+						//Toast.makeText(mContext, (isChecked ? "CHECKED": "CLEARED") + new Integer(mSelectedFilenames.size()).toString(), Toast.LENGTH_SHORT).show();
+					}
+				});
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+                holder.position = position;
+            }
+
+    		Bitmap bmpCurrent = null;
+			try {
+				Bitmap tmp = BitmapFactory.decodeStream(mContext.openFileInput(mFileList[position]));
+				int h = tmp.getHeight();
+				int w = tmp.getWidth();
+				final int maxPix = 100;
+				if (h > w)
+				{
+					w = maxPix * w / h;
+					h = maxPix;
+				}
+				else
+				{
+					h = maxPix * h / w;
+					w = maxPix;
+				}
+				bmpCurrent = Bitmap.createScaledBitmap(tmp, w, h, true);
+				tmp.recycle();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            holder.icon.setImageBitmap(bmpCurrent);
+            holder.checkbox.setChecked(false);
+            
+
+            return convertView;
+        }
+
+        static class ViewHolder {
+        	CheckBox checkbox;
+            ImageView icon;
+            int position;
+        }
+    }
+
+    private EfficientAdapter mAdapter = null;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.image_manager);
+        mAdapter = new EfficientAdapter(this);
+        GridView gv = (GridView)findViewById(R.id.im_gridview);
+        gv.setAdapter(mAdapter);
+        //setListAdapter(mAdapter);
+        //ListView lv = getListView();
+        //gv.setItemsCanFocus(true);
+    }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.menu_image_manager, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_im_delete_selected:
+			mAdapter.deleteSelected();
+			mAdapter.notifyDataSetChanged();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	
+    
+}

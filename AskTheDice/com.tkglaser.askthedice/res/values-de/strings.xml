@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Frag die Würfel</string>
+    <string name="string_roll_the_dice">Bildschirm berühren um zu würfeln...</string>
+    <string name="string_decided">Entschieden. Bildschirm berühren, um nochmal zu starten.</string>
+    <string name="campreview_open">Drücken Sie Menu-&gt;Foto machen...</string>
+    <string name="string_rolling">Würfle...</string>
+    <string name="string_no_pictures">Machen Sie zunächst ein paar Fotos! Menu-&gt;Foto machen</string>
+    <string name="menu_take_a_pic">Bild machen</string>
+    <string name="item_manager">Fotos verwalten</string>
+    <string name="im_delete_selected">Markierte löschen</string>
+    <string name="no_picture_taken">Kein Bild Gemacht</string>
+    <string name="welcome">Willkommen!</string>
+    <string name="lets_take_pics" >Zuerst machen wir ein paar Fotos!</string>
+    <string name="lets_go" >Geht los!</string>
+    <string name="nearly_there" >Fast fertig!</string>
+    <string name="take_another_pic" >Machen Sie ein weiteres Bild, indem sie auf die Kamera im Menü tippen.</string>
+    <string name="ok" >OK</string>
+</resources>

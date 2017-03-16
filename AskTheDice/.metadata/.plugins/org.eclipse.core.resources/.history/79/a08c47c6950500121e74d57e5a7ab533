@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ask The Dice</string>
+    <string name="string_roll_the_dice">Click the screen to roll...</string>
+    <string name="string_decided">Decided. Click the screen to start again.</string>
+    <string name="string_rolling">Rolling...</string>
+    <string name="string_no_pictures">Start by taking some pictures! Select Menu-&gt;Take A Pic...</string>
+    <string name="menu_take_a_pic">Take a pic</string>
+    <string name="item_manager">Manage Pics</string>
+    <string name="im_delete_selected">Delete selected</string>
+    <string name="campreview_open">Press Menu-&gt;Take a pic to take a picture</string>
+    <string name="no_picture_taken">No Picture Taken</string>
+    <string name="welcome">Welcome!</string>
+    <string name="lets_take_pics" >First, let\'s take some pictures!</string>
+</resources>
